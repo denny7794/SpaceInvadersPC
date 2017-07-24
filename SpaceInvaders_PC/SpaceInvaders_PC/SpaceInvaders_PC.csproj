@@ -62,7 +62,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
-    <Compile Include="spriteClass.cs" />
     <Compile Include="spriteComp.cs" />
   </ItemGroup>
   <ItemGroup>
