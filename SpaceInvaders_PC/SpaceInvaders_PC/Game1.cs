@@ -18,6 +18,9 @@ namespace SpaceInvaders_PC
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Texture2D txtEnemy;
+        Rectangle recEnemy = new Rectangle(0, 0, 50, 50);
+
 
         public Game1()
         {
@@ -47,7 +50,15 @@ namespace SpaceInvaders_PC
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            txtEnemy = Content.Load<Texture2D>("enemy_zalit");
+
+            //Вызываем процедуру расстановки объектов в игровом окне
+            //AddSprites();
+        }
+
+        void AddSprites()
+        {
+            Components.Add(new GameObj.Enemy(this, ref txtEnemy, new Vector2(0, 0), recEnemy));
         }
 
         /// <summary>
@@ -56,7 +67,8 @@ namespace SpaceInvaders_PC
         /// </summary>
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
+            //txtEnemy.Dispose();
+            spriteBatch.Dispose();
         }
 
         /// <summary>
@@ -81,11 +93,16 @@ namespace SpaceInvaders_PC
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            //выведем фоновое изображение
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            //Выведем игровые объекты
+            spriteBatch.Draw(txtEnemy, new Vector2(0,0), Color.White);
+            spriteBatch.End();
 
             base.Draw(gameTime);
+
         }
     }
 }
