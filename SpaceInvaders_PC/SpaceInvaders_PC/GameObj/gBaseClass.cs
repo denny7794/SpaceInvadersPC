@@ -17,9 +17,13 @@ namespace SpaceInvaders_PC.GameObj
     /// </summary>
     public class gBaseClass : Microsoft.Xna.Framework.DrawableGameComponent
     {
+        static public Random random = new Random();
+
         Texture2D sprTexture;
         public Vector2 sprPosition;
         public Rectangle sprRectangle;
+        public Color color;
+
         public gBaseClass(Game game, ref Texture2D _sprTexture,
             Vector2 _sprPosition, Rectangle _sprRectangle)
             : base(game)
@@ -30,6 +34,10 @@ namespace SpaceInvaders_PC.GameObj
             // sprPosition = _sprPosition * 64;
             sprPosition = _sprPosition;
             sprRectangle = _sprRectangle;
+
+            color.R = (byte)random.Next(0, 256);
+            color.G = (byte)random.Next(0, 256);
+            color.B = (byte)random.Next(0, 256);
         }
 
         /// <summary>
@@ -58,7 +66,7 @@ namespace SpaceInvaders_PC.GameObj
         {
             SpriteBatch sprBatch =
                 (SpriteBatch)Game.Services.GetService(typeof(SpriteBatch));
-            sprBatch.Draw(sprTexture, sprPosition, Color.White);
+            sprBatch.Draw(sprTexture, sprPosition, color);
             base.Draw(gameTime);
         }
     }

@@ -54,7 +54,7 @@ namespace SpaceInvaders_PC
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Services.AddService(typeof(SpriteBatch), spriteBatch);
 
-            txtEnemy = Content.Load<Texture2D>("enemy_prozr");
+            txtEnemy = Content.Load<Texture2D>("enemy_white");
             //objEnemy = new spriteComp(this, ref txtEnemy, new Rectangle(0,0,50,50), new Vector2(100f, 150f));
 
             //Components.Add(objEnemy);
