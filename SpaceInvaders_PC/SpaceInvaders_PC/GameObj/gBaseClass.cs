@@ -35,9 +35,12 @@ namespace SpaceInvaders_PC.GameObj
             sprPosition = _sprPosition;
             sprRectangle = _sprRectangle;
 
-            color.R = (byte)random.Next(0, 256);
-            color.G = (byte)random.Next(0, 256);
-            color.B = (byte)random.Next(0, 256);
+            color = new Color(
+                (byte)random.Next(0, 256),
+                (byte)random.Next(0, 256),
+                (byte)random.Next(0, 256),
+                125
+                );
         }
 
         /// <summary>
@@ -66,6 +69,7 @@ namespace SpaceInvaders_PC.GameObj
         {
             SpriteBatch sprBatch =
                 (SpriteBatch)Game.Services.GetService(typeof(SpriteBatch));
+            //sprBatch.Draw(sprTexture, sprPosition, Color.White);
             sprBatch.Draw(sprTexture, sprPosition, color);
             base.Draw(gameTime);
         }
