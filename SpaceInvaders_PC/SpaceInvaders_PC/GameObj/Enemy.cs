@@ -30,8 +30,8 @@ namespace SpaceInvaders_PC.GameObj
               game.Window.ClientBounds.Width,
               game.Window.ClientBounds.Height);
 
-            speed.X = 0;
-            speed.Y = 1;
+            speed.X = (float)(random.NextDouble() * 5 - random.NextDouble() * 5);
+            speed.Y = (float)random.NextDouble()/2;
         }
 
         /// <summary>
@@ -45,13 +45,49 @@ namespace SpaceInvaders_PC.GameObj
             base.Initialize();
         }
 
+
+        /// <summary>
+        /// Проверка на левую и правую границы экрана
+        /// </summary>
+        void CheckBounds()
+        {
+            if (sprPosition.X < scrBounds.Left)
+            {
+                sprPosition.X = scrBounds.Left;
+                speed.X *= -1;
+            }
+            if (sprPosition.X > scrBounds.Width - sprRectangle.Width)
+            {
+                sprPosition.X = scrBounds.Width - sprRectangle.Width;
+                speed.X *= -1;
+            }
+        }
+
+        /// <summary>
+        /// Проверка на достижение низа
+        /// </summary>
+        void CheckBottom()
+        {
+            if (sprPosition.Y + sprRectangle.Height > scrBounds.Height)
+            {
+                speed *= 0;
+            }
+        }
+
+        void Move()
+        {
+            sprPosition += speed;
+        }
+
         /// <summary>
         /// Allows the game component to update itself.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-            // TODO: Add your update code here
+            CheckBottom();
+            CheckBounds();
+            Move();
 
             base.Update(gameTime);
         }
