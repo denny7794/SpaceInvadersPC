@@ -21,6 +21,8 @@ namespace SpaceInvaders_PC
         Texture2D txtEnemy;
         Rectangle recEnemy = new Rectangle(0, 0, 50, 50);
 
+        spriteComp objEnemy;
+
 
         public Game1()
         {
@@ -49,8 +51,11 @@ namespace SpaceInvaders_PC
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            Services.AddService(typeof(SpriteBatch), spriteBatch);
+            txtEnemy = Content.Load<Texture2D>("enemy_prozr");
+            objEnemy = new spriteComp(this, ref txtEnemy, new Rectangle(0,0,50,50), new Vector2(100f, 150f));
+            Components.Add(objEnemy);
 
-            txtEnemy = Content.Load<Texture2D>("enemy_zalit");
 
             //Вызываем процедуру расстановки объектов в игровом окне
             //AddSprites();
@@ -68,6 +73,7 @@ namespace SpaceInvaders_PC
         protected override void UnloadContent()
         {
             //txtEnemy.Dispose();
+            //objEnemy.sprTexture.Dispose();
             spriteBatch.Dispose();
         }
 
@@ -98,11 +104,9 @@ namespace SpaceInvaders_PC
 
             spriteBatch.Begin();
             //Выведем игровые объекты
-            spriteBatch.Draw(txtEnemy, new Vector2(0,0), Color.White);
-            spriteBatch.End();
-
+            //spriteBatch.Draw(objEnemy.spTexture, objEnemy.spPosition, Color.White);
             base.Draw(gameTime);
-
+            spriteBatch.End();
         }
     }
 }
