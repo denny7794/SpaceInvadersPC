@@ -28,6 +28,7 @@ namespace SpaceInvaders_PC.GameObj
             //Именно здесь производится перевод индекса элемента массива
             //в координаты на игровом экране
             // sprPosition = _sprPosition * 64;
+            sprPosition = _sprPosition;
             sprRectangle = _sprRectangle;
         }
 

@@ -20,6 +20,7 @@ namespace SpaceInvaders_PC
         SpriteBatch spriteBatch;
         Texture2D txtEnemy;
         Rectangle recEnemy = new Rectangle(0, 0, 50, 50);
+        GameObj.Enemy[] enemies = new GameObj.Enemy[5];
 
         //spriteComp objEnemy;
 
@@ -66,6 +67,12 @@ namespace SpaceInvaders_PC
         void AddSprites()
         {
             Components.Add(new GameObj.Enemy(this, ref txtEnemy, new Vector2(0, 0), recEnemy));
+            for (int i = 0; i < 5; i++)
+            {
+                enemies[i] = new GameObj.Enemy(this, ref txtEnemy, new Vector2(100 + i*52, 50), recEnemy);
+                Components.Add(enemies[i]);
+
+            }
         }
 
         /// <summary>
