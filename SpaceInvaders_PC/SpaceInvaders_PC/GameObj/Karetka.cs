@@ -21,9 +21,10 @@ namespace SpaceInvaders_PC.GameObj
         protected Rectangle scrBounds;
         //Скорость каретки
         protected Vector2 speed;
+        Bullet bullet;
 
         public Karetka(Game game, ref Texture2D _sprTexture,
-             Vector2 _sprPosition, Rectangle _sprRectangle)
+             Vector2 _sprPosition, Rectangle _sprRectangle, Bullet _bullet)
              : base(game, ref _sprTexture, _sprPosition, _sprRectangle)
         {
             scrBounds = new Rectangle(0, 0,
@@ -31,6 +32,8 @@ namespace SpaceInvaders_PC.GameObj
               game.Window.ClientBounds.Height);
 
             speed.X = 5;
+
+            bullet = _bullet;
         }
 
         /// <summary>
@@ -57,15 +60,31 @@ namespace SpaceInvaders_PC.GameObj
             {
                 sprPosition.X = scrBounds.Width - sprRectangle.Width;
             }
+            if (bullet.sprPosition.Y + bullet.sprRectangle.Height < 0)
+            {
+                bullet.BeforeShot(this);
+            }
         }
 
         void Move()
         {
             KeyboardState kbState = Keyboard.GetState();
             if (kbState.IsKeyDown(Keys.Left))
+            {
                 sprPosition.X -= speed.X;
+                if (!bullet.isShot) 
+                    bullet.sprPosition.X -= speed.X;
+            }
             if (kbState.IsKeyDown(Keys.Right))
+            {
                 sprPosition.X += speed.X;
+                if (!bullet.isShot)
+                    bullet.sprPosition.X += speed.X;
+            }
+            if (kbState.IsKeyDown(Keys.Space) && !bullet.isShot)
+            {
+                bullet.Shot(this);
+            }
         }
 
         /// <summary>

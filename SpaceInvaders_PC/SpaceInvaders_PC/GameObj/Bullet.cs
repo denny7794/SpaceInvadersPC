@@ -15,8 +15,15 @@ namespace SpaceInvaders_PC.GameObj
     /// <summary>
     /// This is a game component that implements IUpdateable.
     /// </summary>
-    public class Bullet : Karetka
+    public class Bullet : gBaseClass
     {
+        //Прямоугольник, представляющий игровое окно
+        protected Rectangle scrBounds;
+        //Скорость снаряда
+        protected Vector2 speed;
+
+        public bool isShot;
+
         public Bullet(Game game, ref Texture2D _sprTexture,
              Vector2 _sprPosition, Rectangle _sprRectangle)
              : base(game, ref _sprTexture, _sprPosition, _sprRectangle)
@@ -26,6 +33,9 @@ namespace SpaceInvaders_PC.GameObj
               game.Window.ClientBounds.Height);
 
             speed.X = 5;
+            speed.Y = 0;
+
+            isShot = false;
         }
 
         /// <summary>
@@ -49,6 +59,45 @@ namespace SpaceInvaders_PC.GameObj
             {
                 sprPosition.X = scrBounds.Width - 50;
             }
+            //if (sprPosition.Y + sprRectangle.Height < 0)
+            //{
+            //    isShot = false;
+            //    sprPosition.Y = scrBounds.Height - sprRectangle.Height;
+            //    speed.Y = 0;
+            //}
+        }
+
+        public void BeforeShot(Karetka karetka)
+        {
+            isShot = false;
+            sprPosition.X = karetka.sprPosition.X + karetka.sprRectangle.Width / 2 - 2;
+            sprPosition.Y = scrBounds.Height - karetka.sprRectangle.Height - sprRectangle.Height/2;
+            speed.Y = 0;
+        }
+
+        void Move()
+        {
+            //KeyboardState kbState = Keyboard.GetState();
+            //if (kbState.IsKeyDown(Keys.Left))
+            //    sprPosition.X -= speed.X;
+            //if (kbState.IsKeyDown(Keys.Right))
+            //    sprPosition.X += speed.X;
+            //if (kbState.IsKeyDown(Keys.Space) && !isShot)
+            //{
+            //    Shot();
+            //}
+            //sprPosition += speed;
+            sprPosition.Y += speed.Y;
+        }
+
+        public void Shot(Karetka karetka)
+        {
+            isShot = true;
+            sprPosition.X = karetka.sprPosition.X+karetka.sprRectangle.Width/2 - 2;
+            //sprPosition.Y = karetka.sprPosition.Y + sprRectangle.Height / 2 - 4;
+            sprPosition.Y = scrBounds.Height - karetka.sprRectangle.Height - sprRectangle.Height / 2;
+            speed.X = 0;
+            speed.Y = -5;
         }
 
         /// <summary>
@@ -58,6 +107,7 @@ namespace SpaceInvaders_PC.GameObj
         public override void Update(GameTime gameTime)
         {
             CheckBounds();
+            Move(); 
 
             base.Update(gameTime);
         }

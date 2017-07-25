@@ -29,6 +29,7 @@ namespace SpaceInvaders_PC
         // Снаряд
         Texture2D txrBullet;
         Rectangle rectBullet = new Rectangle(0, 0, 10, 10);
+        GameObj.Bullet bullet;
 
 
         //spriteComp objEnemy;
@@ -83,10 +84,10 @@ namespace SpaceInvaders_PC
             {
                 enemies[i] = new GameObj.Enemy(this, ref txrEnemy, new Vector2(100 + i*52, 50), rectEnemy);
                 Components.Add(enemies[i]);
-
             }
-            Components.Add(new GameObj.Karetka(this, ref txrKaretka, new Vector2(this.Window.ClientBounds.Width/2-rectKaretka.Width/2, this.Window.ClientBounds.Height- rectKaretka.Height), rectKaretka));
-            Components.Add(new GameObj.Bullet(this, ref txrBullet, new Vector2(this.Window.ClientBounds.Width/2, this.Window.ClientBounds.Height-10), rectBullet));
+            bullet = new GameObj.Bullet(this, ref txrBullet, new Vector2(this.Window.ClientBounds.Width / 2 - 2, this.Window.ClientBounds.Height  -rectKaretka.Height - rectBullet.Height / 2), rectBullet);
+            Components.Add(bullet);
+            Components.Add(new GameObj.Karetka(this, ref txrKaretka, new Vector2(this.Window.ClientBounds.Width/2-rectKaretka.Width/2, this.Window.ClientBounds.Height- rectKaretka.Height), rectKaretka, bullet));
         }
 
         /// <summary>
