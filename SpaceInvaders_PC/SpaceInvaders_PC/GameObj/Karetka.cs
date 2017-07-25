@@ -21,8 +21,6 @@ namespace SpaceInvaders_PC.GameObj
         Rectangle scrBounds;
         //Скорость каретки
         Vector2 speed;
-        //Направление движения каретки
-        bool direction;
 
         public Karetka(Game game, ref Texture2D _sprTexture,
              Vector2 _sprPosition, Rectangle _sprRectangle)
@@ -32,8 +30,7 @@ namespace SpaceInvaders_PC.GameObj
               game.Window.ClientBounds.Width,
               game.Window.ClientBounds.Height);
 
-            speed.X = 2;
-            direction = true;
+            speed.X = 5;
         }
 
         /// <summary>
@@ -48,12 +45,37 @@ namespace SpaceInvaders_PC.GameObj
         }
 
         /// <summary>
+        /// Проверка на левую и правую границы экрана
+        /// </summary>
+        void CheckBounds()
+        {
+            if (sprPosition.X < scrBounds.Left)
+            {
+                sprPosition.X = scrBounds.Left;
+            }
+            if (sprPosition.X > scrBounds.Width - sprRectangle.Width)
+            {
+                sprPosition.X = scrBounds.Width - sprRectangle.Width;
+            }
+        }
+
+        void Move()
+        {
+            KeyboardState kbState = Keyboard.GetState();
+            if (kbState.IsKeyDown(Keys.Left))
+                sprPosition.X -= speed.X;
+            if (kbState.IsKeyDown(Keys.Right))
+                sprPosition.X += speed.X;
+        }
+
+        /// <summary>
         /// Allows the game component to update itself.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-            // TODO: Add your update code here
+            CheckBounds();
+            Move();
 
             base.Update(gameTime);
         }

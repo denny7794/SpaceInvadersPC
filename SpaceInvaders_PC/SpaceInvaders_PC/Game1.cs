@@ -79,7 +79,7 @@ namespace SpaceInvaders_PC
                 Components.Add(enemies[i]);
 
             }
-            Components.Add(new GameObj.Karetka(this, ref txrKaretka, new Vector2(this.Window.ClientBounds.Width/2-rectKaretka.Width/2, this.Window.ClientBounds.Height- rectKaretka.Height), rectEnemy));
+            Components.Add(new GameObj.Karetka(this, ref txrKaretka, new Vector2(this.Window.ClientBounds.Width/2-rectKaretka.Width/2, this.Window.ClientBounds.Height- rectKaretka.Height), rectKaretka));
         }
 
         /// <summary>
