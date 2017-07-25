@@ -69,13 +69,14 @@ namespace SpaceInvaders_PC.GameObj
         void Move()
         {
             KeyboardState kbState = Keyboard.GetState();
-            if (kbState.IsKeyDown(Keys.Left))
+            //MouseState msState = Mouse.GetState();
+            if (kbState.IsKeyDown(Keys.Left))// || (msState.X < sprPosition.X + sprRectangle.Width/2))
             {
                 sprPosition.X -= speed.X;
                 if (!bullet.isShot) 
                     bullet.sprPosition.X -= speed.X;
             }
-            if (kbState.IsKeyDown(Keys.Right))
+            if (kbState.IsKeyDown(Keys.Right))// || (msState.X > sprPosition.X + sprRectangle.Width/2))
             {
                 sprPosition.X += speed.X;
                 if (!bullet.isShot)
@@ -94,6 +95,10 @@ namespace SpaceInvaders_PC.GameObj
         public override void Update(GameTime gameTime)
         {
             CheckBounds();
+            if (bullet.isKillEnemy())
+            {
+                bullet.BeforeShot(this);
+            }
             Move();
 
             base.Update(gameTime);

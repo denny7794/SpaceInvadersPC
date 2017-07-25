@@ -49,6 +49,19 @@ namespace SpaceInvaders_PC.GameObj
             base.Initialize();
         }
 
+        //Функция используется как вспомогательная
+        //Она проверяет, сталкивается ли наш объект с объектом
+        //класса gBaseClass и возвращает True если столкновение есть
+        protected bool IsCollideWithObject(gBaseClass spr)
+        {
+            return (this.sprPosition.X + this.sprRectangle.Width > spr.sprPosition.X &&
+                        this.sprPosition.X < spr.sprPosition.X + spr.sprRectangle.Width &&
+                        this.sprPosition.Y + this.sprRectangle.Height > spr.sprPosition.Y &&
+                        this.sprPosition.Y < spr.sprPosition.Y + spr.sprRectangle.Height);
+
+
+        }
+
         /// <summary>
         /// Allows the game component to update itself.
         /// </summary>

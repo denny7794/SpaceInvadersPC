@@ -100,6 +100,30 @@ namespace SpaceInvaders_PC.GameObj
             speed.Y = -5;
         }
 
+        public bool isKillEnemy()
+        {
+            gBaseClass FindObj = null;
+            foreach (gBaseClass spr in Game.Components)
+            {
+                if (spr.GetType() == (typeof(Enemy)))
+                {
+                    if(IsCollideWithObject(spr))
+                    {
+                        //Если условие выполняется - сохраним ссылку на объект врага
+                        FindObj = spr;
+                    }
+                }
+            }
+            //Если был удачный прыжок на врага
+            //добавим игроку очков и уничтожим объект класса Enemy
+            if (FindObj != null)
+            {
+                FindObj.Dispose();
+                return true;
+            }
+            return false;
+        }
+
         /// <summary>
         /// Allows the game component to update itself.
         /// </summary>
