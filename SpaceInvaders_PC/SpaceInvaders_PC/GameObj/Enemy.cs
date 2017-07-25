@@ -32,6 +32,13 @@ namespace SpaceInvaders_PC.GameObj
 
             speed.X = (float)(random.NextDouble() * 5 - random.NextDouble() * 5);
             speed.Y = (float)random.NextDouble()/2;
+
+            color = new Color(
+                (byte)random.Next(0, 256),
+                (byte)random.Next(0, 256),
+                (byte)random.Next(0, 256),
+                125
+                );
         }
 
         /// <summary>

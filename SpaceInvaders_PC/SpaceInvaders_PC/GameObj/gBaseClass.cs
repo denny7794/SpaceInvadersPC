@@ -35,12 +35,7 @@ namespace SpaceInvaders_PC.GameObj
             sprPosition = _sprPosition;
             sprRectangle = _sprRectangle;
 
-            color = new Color(
-                (byte)random.Next(0, 256),
-                (byte)random.Next(0, 256),
-                (byte)random.Next(0, 256),
-                125
-                );
+            color = new Color(255, 255, 255, 125);
         }
 
         /// <summary>
