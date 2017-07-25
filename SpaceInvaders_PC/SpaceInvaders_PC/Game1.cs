@@ -18,10 +18,13 @@ namespace SpaceInvaders_PC
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Texture2D txtEnemy;
-        Rectangle recEnemy = new Rectangle(0, 0, 50, 50);
+        Texture2D txrEnemy;
+        Texture2D txrKaretka;
+        Rectangle rectEnemy = new Rectangle(0, 0, 50, 50);
+        Rectangle rectKaretka = new Rectangle(0, 0, 100, 40);
         static int numberOfEnemies = 10;
         GameObj.Enemy[] enemies = new GameObj.Enemy[numberOfEnemies];
+
 
         //spriteComp objEnemy;
 
@@ -56,7 +59,8 @@ namespace SpaceInvaders_PC
             Services.AddService(typeof(SpriteBatch), spriteBatch);
 
             //txtEnemy = Content.Load<Texture2D>("enemy_prozr");
-            txtEnemy = Content.Load<Texture2D>("enemy_white");
+            txrEnemy = Content.Load<Texture2D>("enemy_white");
+            txrKaretka = Content.Load<Texture2D>("karetka_prozr");
             //objEnemy = new spriteComp(this, ref txtEnemy, new Rectangle(0,0,50,50), new Vector2(100f, 150f));
 
             //Components.Add(objEnemy);
@@ -68,13 +72,14 @@ namespace SpaceInvaders_PC
 
         void AddSprites()
         {
-            Components.Add(new GameObj.Enemy(this, ref txtEnemy, new Vector2(0, 0), recEnemy));
+            //Components.Add(new GameObj.Enemy(this, ref txrEnemy, new Vector2(0, 0), recEnemy));
             for (int i = 0; i < numberOfEnemies; i++)
             {
-                enemies[i] = new GameObj.Enemy(this, ref txtEnemy, new Vector2(100 + i*52, 50), recEnemy);
+                enemies[i] = new GameObj.Enemy(this, ref txrEnemy, new Vector2(100 + i*52, 50), rectEnemy);
                 Components.Add(enemies[i]);
 
             }
+            Components.Add(new GameObj.Karetka(this, ref txrKaretka, new Vector2(this.Window.ClientBounds.Width/2-rectKaretka.Width/2, this.Window.ClientBounds.Height- rectKaretka.Height), rectEnemy));
         }
 
         /// <summary>
@@ -83,7 +88,7 @@ namespace SpaceInvaders_PC
         /// </summary>
         protected override void UnloadContent()
         {
-            txtEnemy.Dispose();
+            txrEnemy.Dispose();
             spriteBatch.Dispose();
         }
 
