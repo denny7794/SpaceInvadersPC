@@ -30,6 +30,8 @@ namespace SpaceInvaders_PC
         Texture2D txrBullet;
         Rectangle rectBullet = new Rectangle(0, 0, 10, 10);
         GameObj.Bullet bullet;
+        // Признак того, что игра идет
+        static public bool isGameRun;
 
 
         //spriteComp objEnemy;
@@ -50,7 +52,7 @@ namespace SpaceInvaders_PC
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            isGameRun = true;
             base.Initialize();
         }
 

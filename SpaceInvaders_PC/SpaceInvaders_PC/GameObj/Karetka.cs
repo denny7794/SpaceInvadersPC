@@ -99,19 +99,25 @@ namespace SpaceInvaders_PC.GameObj
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-            CheckBounds();
-            if (bullet.isKillEnemy())
+            if (Game1.isGameRun)
             {
-                scores += 50;
-                bullet.BeforeShot(this);
-                Game.Window.Title = "Вы набрали " + scores + " очков";
+                CheckBounds();
+                if (bullet.isKillEnemy())
+                {
+                    scores += 50;
+                    bullet.BeforeShot(this);
+                    Game.Window.Title = "Вы набрали " + scores + " очков";
+                }
+                if (bullet.isAllEnemiesKilled())
+                {
+                    Game.Window.Title = "ВЫ ПОБЕДИЛИ!!!";
+                }
+                Move();
             }
-            if (bullet.isAllEnemiesKilled())
+            else
             {
-                Game.Window.Title = "ВЫ ПОБЕДИЛИ!!!";
+                Game.Window.Title = "ВЫ ПРОИГРАЛИ...";
             }
-            Move();
-
             base.Update(gameTime);
         }
     }

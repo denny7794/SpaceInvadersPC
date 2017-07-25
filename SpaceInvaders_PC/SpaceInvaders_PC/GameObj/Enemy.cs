@@ -78,6 +78,7 @@ namespace SpaceInvaders_PC.GameObj
             if (sprPosition.Y + sprRectangle.Height > scrBounds.Height)
             {
                 speed *= 0;
+                Game1.isGameRun = false;
             }
         }
 
@@ -92,10 +93,12 @@ namespace SpaceInvaders_PC.GameObj
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-            CheckBottom();
-            CheckBounds();
-            Move();
-
+            if (Game1.isGameRun)
+            {
+                CheckBottom();
+                CheckBounds();
+                Move();
+            }
             base.Update(gameTime);
         }
     }

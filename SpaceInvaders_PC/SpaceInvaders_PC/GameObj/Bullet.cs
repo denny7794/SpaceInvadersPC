@@ -107,7 +107,7 @@ namespace SpaceInvaders_PC.GameObj
             {
                 if (spr.GetType() == (typeof(Enemy)))
                 {
-                    if(IsCollideWithObject(spr))
+                    if(IsCollideWithObject(spr) && isShot)
                     {
                         //Если условие выполняется - сохраним ссылку на объект врага
                         FindObj = spr;
