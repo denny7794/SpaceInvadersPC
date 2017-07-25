@@ -124,6 +124,18 @@ namespace SpaceInvaders_PC.GameObj
             return false;
         }
 
+        public bool isAllEnemiesKilled()
+        {
+            foreach (gBaseClass spr in Game.Components)
+            {
+                if (spr.GetType() == (typeof(Enemy)))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
         /// <summary>
         /// Allows the game component to update itself.
         /// </summary>

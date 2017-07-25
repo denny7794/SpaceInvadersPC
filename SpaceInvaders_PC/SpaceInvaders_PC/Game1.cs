@@ -97,6 +97,8 @@ namespace SpaceInvaders_PC
         protected override void UnloadContent()
         {
             txrEnemy.Dispose();
+            txrKaretka.Dispose();
+            txrBullet.Dispose();
             spriteBatch.Dispose();
         }
 
@@ -111,7 +113,6 @@ namespace SpaceInvaders_PC
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
-            // TODO: Add your update logic here
 
             base.Update(gameTime);
         }

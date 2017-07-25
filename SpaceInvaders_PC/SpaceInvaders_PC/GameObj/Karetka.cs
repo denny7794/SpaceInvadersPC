@@ -21,7 +21,10 @@ namespace SpaceInvaders_PC.GameObj
         protected Rectangle scrBounds;
         //Скорость каретки
         protected Vector2 speed;
+        // Переменная для снаряда
         Bullet bullet;
+        // Переменная для хранения очков
+        int scores;
 
         public Karetka(Game game, ref Texture2D _sprTexture,
              Vector2 _sprPosition, Rectangle _sprRectangle, Bullet _bullet)
@@ -34,6 +37,8 @@ namespace SpaceInvaders_PC.GameObj
             speed.X = 5;
 
             bullet = _bullet;
+
+            scores = 0;
         }
 
         /// <summary>
@@ -97,7 +102,13 @@ namespace SpaceInvaders_PC.GameObj
             CheckBounds();
             if (bullet.isKillEnemy())
             {
+                scores += 50;
                 bullet.BeforeShot(this);
+                Game.Window.Title = "Вы набрали " + scores + " очков";
+            }
+            if (bullet.isAllEnemiesKilled())
+            {
+                Game.Window.Title = "ВЫ ПОБЕДИЛИ!!!";
             }
             Move();
 
