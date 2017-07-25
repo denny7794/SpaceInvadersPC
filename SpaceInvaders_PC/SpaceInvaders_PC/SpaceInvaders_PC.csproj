@@ -57,6 +57,7 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameObj\Bullet.cs" />
     <Compile Include="GameObj\Enemy.cs" />
     <Compile Include="GameObj\gBaseClass.cs" />
     <Compile Include="GameObj\Karetka.cs" />

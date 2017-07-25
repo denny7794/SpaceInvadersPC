@@ -18,12 +18,17 @@ namespace SpaceInvaders_PC
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        // Враги
         Texture2D txrEnemy;
-        Texture2D txrKaretka;
         Rectangle rectEnemy = new Rectangle(0, 0, 50, 50);
-        Rectangle rectKaretka = new Rectangle(0, 0, 100, 40);
         static int numberOfEnemies = 10;
         GameObj.Enemy[] enemies = new GameObj.Enemy[numberOfEnemies];
+        // Каретка
+        Texture2D txrKaretka;
+        Rectangle rectKaretka = new Rectangle(0, 0, 100, 40);
+        // Снаряд
+        Texture2D txrBullet;
+        Rectangle rectBullet = new Rectangle(0, 0, 10, 10);
 
 
         //spriteComp objEnemy;
@@ -61,6 +66,7 @@ namespace SpaceInvaders_PC
             //txtEnemy = Content.Load<Texture2D>("enemy_prozr");
             txrEnemy = Content.Load<Texture2D>("enemy_white");
             txrKaretka = Content.Load<Texture2D>("karetka_prozr");
+            txrBullet = Content.Load<Texture2D>("bullet_prozr");
             //objEnemy = new spriteComp(this, ref txtEnemy, new Rectangle(0,0,50,50), new Vector2(100f, 150f));
 
             //Components.Add(objEnemy);
@@ -80,6 +86,7 @@ namespace SpaceInvaders_PC
 
             }
             Components.Add(new GameObj.Karetka(this, ref txrKaretka, new Vector2(this.Window.ClientBounds.Width/2-rectKaretka.Width/2, this.Window.ClientBounds.Height- rectKaretka.Height), rectKaretka));
+            Components.Add(new GameObj.Bullet(this, ref txrBullet, new Vector2(this.Window.ClientBounds.Width/2, this.Window.ClientBounds.Height-10), rectBullet));
         }
 
         /// <summary>

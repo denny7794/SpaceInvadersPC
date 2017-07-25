@@ -15,18 +15,13 @@ namespace SpaceInvaders_PC.GameObj
     /// <summary>
     /// This is a game component that implements IUpdateable.
     /// </summary>
-    public class Karetka : gBaseClass
+    public class Bullet : Karetka
     {
-        //Прямоугольник, представляющий игровое окно
-        protected Rectangle scrBounds;
-        //Скорость каретки
-        protected Vector2 speed;
-
-        public Karetka(Game game, ref Texture2D _sprTexture,
+        public Bullet(Game game, ref Texture2D _sprTexture,
              Vector2 _sprPosition, Rectangle _sprRectangle)
              : base(game, ref _sprTexture, _sprPosition, _sprRectangle)
         {
-            scrBounds = new Rectangle(0, 0,
+             scrBounds = new Rectangle(0, 0,
               game.Window.ClientBounds.Width,
               game.Window.ClientBounds.Height);
 
@@ -44,28 +39,16 @@ namespace SpaceInvaders_PC.GameObj
             base.Initialize();
         }
 
-        /// <summary>
-        /// Проверка на левую и правую границы экрана
-        /// </summary>
         void CheckBounds()
         {
-            if (sprPosition.X < scrBounds.Left)
+            if (sprPosition.X < scrBounds.Left + 50 )
             {
-                sprPosition.X = scrBounds.Left;
+                sprPosition.X = scrBounds.Left + 50;
             }
-            if (sprPosition.X > scrBounds.Width - sprRectangle.Width)
+            if (sprPosition.X > scrBounds.Width - 50)
             {
-                sprPosition.X = scrBounds.Width - sprRectangle.Width;
+                sprPosition.X = scrBounds.Width - 50;
             }
-        }
-
-        void Move()
-        {
-            KeyboardState kbState = Keyboard.GetState();
-            if (kbState.IsKeyDown(Keys.Left))
-                sprPosition.X -= speed.X;
-            if (kbState.IsKeyDown(Keys.Right))
-                sprPosition.X += speed.X;
         }
 
         /// <summary>
@@ -75,7 +58,6 @@ namespace SpaceInvaders_PC.GameObj
         public override void Update(GameTime gameTime)
         {
             CheckBounds();
-            Move();
 
             base.Update(gameTime);
         }
