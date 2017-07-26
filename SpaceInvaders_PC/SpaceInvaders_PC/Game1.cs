@@ -33,6 +33,16 @@ namespace SpaceInvaders_PC
         // Признак того, что игра идет
         static public bool isGameRun;
 
+        Microsoft.Xna.Framework.Audio.
+        //Переменная для работы с аудиоустройством
+        AudioEngine audioEngine;
+        //Переменная для работы с Wave-банком
+        WaveBank waveBank;
+        //Переменная для работы с Sound-банком
+        SoundBank soundBank;
+        //Переменная для работы с фоновой музыкой игры
+        Cue musicCue;
+
 
         //spriteComp objEnemy;
 
@@ -51,8 +61,18 @@ namespace SpaceInvaders_PC
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+
             isGameRun = true;
+
+            //Загружаем аудиоресурсы для игры
+            audioEngine = new AudioEngine("Content\\Audio\\SpaceInvaders.xgs");
+            waveBank = new WaveBank(audioEngine, "Content\\Audio\\Sounds.xwb");
+            soundBank = new SoundBank(audioEngine, "Content\\Audio\\SoundBank.xsb");
+            //Присваиваем переменной ссылку на закладку с именем Music
+            musicCue = soundBank.GetCue("1");
+            //Включаем проигрывание фоновой музыки
+            musicCue.Play();
+            
             base.Initialize();
         }
 
