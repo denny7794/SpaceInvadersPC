@@ -28,7 +28,7 @@ namespace SpaceInvaders_PC.GameObj
         //«‚ÛÍË
         SoundBank sound;
 
-        int gameOver = 0;
+        int endGame = 0;
 
         public Karetka(Game game, ref Texture2D _sprTexture,
              Vector2 _sprPosition, Rectangle _sprRectangle, Bullet _bullet, SoundBank newSound)
@@ -117,15 +117,22 @@ namespace SpaceInvaders_PC.GameObj
                 if (bullet.isAllEnemiesKilled())
                 {
                     Game.Window.Title = "¬€ œŒ¡≈ƒ»À»!!!";
-                    sound.PlayCue("shot");
+                    if (endGame == 0)
+                    {
+                        endGame++;
+                        sound.PlayCue("win");
+                    }
                 }
                 Move();
             }
             else
             {
                 Game.Window.Title = "¬€ œ–Œ»√–¿À»...";
-                if(gameOver++ == 0)
+                if (endGame++ == 0)
+                {
+                    endGame++;
                     sound.PlayCue("gameover");
+                }
             }
             base.Update(gameTime);
         }
