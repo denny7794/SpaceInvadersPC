@@ -25,9 +25,13 @@ namespace SpaceInvaders_PC.GameObj
         Bullet bullet;
         // Переменная для хранения очков
         int scores;
+        //Звуки
+        SoundBank sound;
+
+        int gameOver = 0;
 
         public Karetka(Game game, ref Texture2D _sprTexture,
-             Vector2 _sprPosition, Rectangle _sprRectangle, Bullet _bullet)
+             Vector2 _sprPosition, Rectangle _sprRectangle, Bullet _bullet, SoundBank newSound)
              : base(game, ref _sprTexture, _sprPosition, _sprRectangle)
         {
             scrBounds = new Rectangle(0, 0,
@@ -39,6 +43,8 @@ namespace SpaceInvaders_PC.GameObj
             bullet = _bullet;
 
             scores = 0;
+
+            sound = newSound;
         }
 
         /// <summary>
@@ -111,12 +117,15 @@ namespace SpaceInvaders_PC.GameObj
                 if (bullet.isAllEnemiesKilled())
                 {
                     Game.Window.Title = "ВЫ ПОБЕДИЛИ!!!";
+                    sound.PlayCue("shot");
                 }
                 Move();
             }
             else
             {
                 Game.Window.Title = "ВЫ ПРОИГРАЛИ...";
+                if(gameOver++ == 0)
+                    sound.PlayCue("gameover");
             }
             base.Update(gameTime);
         }

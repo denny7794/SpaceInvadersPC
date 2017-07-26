@@ -117,9 +117,9 @@ namespace SpaceInvaders_PC
                 enemies[i] = new GameObj.Enemy(this, ref txrEnemy, new Vector2(100 + i*52, 50), rectEnemy);
                 Components.Add(enemies[i]);
             }
-            bullet = new GameObj.Bullet(this, ref txrBullet, new Vector2(this.Window.ClientBounds.Width / 2 - 2, this.Window.ClientBounds.Height  -rectKaretka.Height - rectBullet.Height / 2), rectBullet);
+            bullet = new GameObj.Bullet(this, ref txrBullet, new Vector2(this.Window.ClientBounds.Width / 2 - 2, this.Window.ClientBounds.Height  -rectKaretka.Height - rectBullet.Height / 2), rectBullet, soundBank);
             Components.Add(bullet);
-            Components.Add(new GameObj.Karetka(this, ref txrKaretka, new Vector2(this.Window.ClientBounds.Width/2-rectKaretka.Width/2, this.Window.ClientBounds.Height- rectKaretka.Height), rectKaretka, bullet));
+            Components.Add(new GameObj.Karetka(this, ref txrKaretka, new Vector2(this.Window.ClientBounds.Width/2-rectKaretka.Width/2, this.Window.ClientBounds.Height- rectKaretka.Height), rectKaretka, bullet, soundBank));
         }
 
         /// <summary>
@@ -176,6 +176,12 @@ namespace SpaceInvaders_PC
             {
                 countDPress = 0;
             }
+
+            if (!isGameRun)
+            {
+                musicCue.Stop(AudioStopOptions.Immediate);
+            }
+
             audioEngine.Update();
 
             base.Update(gameTime);

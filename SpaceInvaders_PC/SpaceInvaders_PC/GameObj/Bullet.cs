@@ -21,11 +21,14 @@ namespace SpaceInvaders_PC.GameObj
         protected Rectangle scrBounds;
         //Скорость снаряда
         protected Vector2 speed;
+        //Звуки
+        SoundBank sound;
+
 
         public bool isShot;
 
         public Bullet(Game game, ref Texture2D _sprTexture,
-             Vector2 _sprPosition, Rectangle _sprRectangle)
+             Vector2 _sprPosition, Rectangle _sprRectangle, SoundBank newSound)
              : base(game, ref _sprTexture, _sprPosition, _sprRectangle)
         {
              scrBounds = new Rectangle(0, 0,
@@ -36,6 +39,8 @@ namespace SpaceInvaders_PC.GameObj
             speed.Y = 0;
 
             isShot = false;
+
+            sound = newSound;
         }
 
         /// <summary>
@@ -98,6 +103,7 @@ namespace SpaceInvaders_PC.GameObj
             sprPosition.Y = scrBounds.Height - karetka.sprRectangle.Height - sprRectangle.Height / 2;
             speed.X = 0;
             speed.Y = -5;
+            sound.PlayCue("shot");
         }
 
         public bool isKillEnemy()
@@ -118,6 +124,7 @@ namespace SpaceInvaders_PC.GameObj
             //добавим игроку очков и уничтожим объект класса Enemy
             if (FindObj != null)
             {
+                sound.PlayCue("bang");
                 FindObj.Dispose();
                 return true;
             }
