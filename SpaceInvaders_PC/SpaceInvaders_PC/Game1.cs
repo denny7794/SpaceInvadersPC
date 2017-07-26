@@ -18,6 +18,7 @@ namespace SpaceInvaders_PC
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Random random;
         // Враги
         Texture2D txrEnemy;
         Rectangle rectEnemy = new Rectangle(0, 0, 50, 50);
@@ -42,6 +43,12 @@ namespace SpaceInvaders_PC
         SoundBank soundBank;
         //Переменная для работы с фоновой музыкой игры
         Cue musicCue;
+        //Число фоновых песен
+        int numberOfSongs = 5;
+        //Текущая песня
+        int curSong;
+
+        int countDPress = 0;
 
 
         //spriteComp objEnemy;
@@ -64,12 +71,15 @@ namespace SpaceInvaders_PC
 
             isGameRun = true;
 
+            random = new Random();
+
             //Загружаем аудиоресурсы для игры
             audioEngine = new AudioEngine("Content\\Audio\\SpaceInvaders.xgs");
             waveBank = new WaveBank(audioEngine, "Content\\Audio\\Sounds.xwb");
             soundBank = new SoundBank(audioEngine, "Content\\Audio\\SoundBank.xsb");
             //Присваиваем переменной ссылку на закладку с именем Music
-            musicCue = soundBank.GetCue("1");
+            curSong = random.Next(1, numberOfSongs + 1);
+            musicCue = soundBank.GetCue(curSong.ToString());
             //Включаем проигрывание фоновой музыки
             musicCue.Play();
             
@@ -135,6 +145,38 @@ namespace SpaceInvaders_PC
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
+            //Блок управления проигрыванием по нажатию клавиш
+            //При нажатии клавиши A приостанавливаем проигрывание
+            KeyboardState kbState = Keyboard.GetState();
+            if (kbState.IsKeyDown(Keys.A))
+            {
+                musicCue.Pause();
+            }
+            //При нажатии клавиши S продолжаем проигрывание музыки
+            if (kbState.IsKeyDown(Keys.S))
+            {
+                musicCue.Resume();
+            }
+            //При нажатии клавиши D переходим на следующую песню
+            if (kbState.IsKeyDown(Keys.D))
+            {
+                countDPress++;
+                if (countDPress==1) //Для того, чтобы переключение происходило только 1 раз при нажатии
+                {
+                    if (curSong < numberOfSongs)
+                        curSong++;
+                    else
+                        curSong = 1;
+                    musicCue.Stop(AudioStopOptions.Immediate);
+                    musicCue = soundBank.GetCue(curSong.ToString());
+                    musicCue.Play();
+                }
+            }
+            if (kbState.IsKeyUp(Keys.D))
+            {
+                countDPress = 0;
+            }
+            audioEngine.Update();
 
             base.Update(gameTime);
         }
