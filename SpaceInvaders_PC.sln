@@ -5,20 +5,38 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceInvaders_PC", "SpaceInvaders_PC\SpaceInvaders_PC\SpaceInvaders_PC.csproj", "{D6E1A1E5-0614-437D-A6F5-2A67592EF448}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "SpaceInvaders_PCContent", "SpaceInvaders_PC\SpaceInvaders_PCContent\SpaceInvaders_PCContent.contentproj", "{DABC8024-BC8E-4472-87E7-015A67C7C00E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceInvaders_PCContent", "SpaceInvaders_PC\SpaceInvaders_PCContent\SpaceInvaders_PCContent.contentproj", "{DABC8024-BC8E-4472-87E7-015A67C7C00E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xbox 360 Copy of SpaceInvaders_PC", "SpaceInvaders_PC\SpaceInvaders_PC\Xbox 360 Copy of SpaceInvaders_PC.csproj", "{6305679F-7514-45E2-90D5-C984787225C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
+		Debug|Xbox 360 = Debug|Xbox 360
 		Release|x86 = Release|x86
+		Release|Xbox 360 = Release|Xbox 360
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{D6E1A1E5-0614-437D-A6F5-2A67592EF448}.Debug|x86.ActiveCfg = Debug|x86
 		{D6E1A1E5-0614-437D-A6F5-2A67592EF448}.Debug|x86.Build.0 = Debug|x86
+		{D6E1A1E5-0614-437D-A6F5-2A67592EF448}.Debug|Xbox 360.ActiveCfg = Debug|x86
+		{D6E1A1E5-0614-437D-A6F5-2A67592EF448}.Debug|Xbox 360.Build.0 = Debug|x86
 		{D6E1A1E5-0614-437D-A6F5-2A67592EF448}.Release|x86.ActiveCfg = Release|x86
 		{D6E1A1E5-0614-437D-A6F5-2A67592EF448}.Release|x86.Build.0 = Release|x86
+		{D6E1A1E5-0614-437D-A6F5-2A67592EF448}.Release|Xbox 360.ActiveCfg = Release|x86
+		{D6E1A1E5-0614-437D-A6F5-2A67592EF448}.Release|Xbox 360.Build.0 = Release|x86
 		{DABC8024-BC8E-4472-87E7-015A67C7C00E}.Debug|x86.ActiveCfg = Debug|x86
+		{DABC8024-BC8E-4472-87E7-015A67C7C00E}.Debug|Xbox 360.ActiveCfg = Debug|x86
 		{DABC8024-BC8E-4472-87E7-015A67C7C00E}.Release|x86.ActiveCfg = Release|x86
+		{DABC8024-BC8E-4472-87E7-015A67C7C00E}.Release|Xbox 360.ActiveCfg = Release|x86
+		{6305679F-7514-45E2-90D5-C984787225C5}.Debug|x86.ActiveCfg = Debug|Xbox 360
+		{6305679F-7514-45E2-90D5-C984787225C5}.Debug|Xbox 360.ActiveCfg = Debug|Xbox 360
+		{6305679F-7514-45E2-90D5-C984787225C5}.Debug|Xbox 360.Build.0 = Debug|Xbox 360
+		{6305679F-7514-45E2-90D5-C984787225C5}.Debug|Xbox 360.Deploy.0 = Debug|Xbox 360
+		{6305679F-7514-45E2-90D5-C984787225C5}.Release|x86.ActiveCfg = Release|Xbox 360
+		{6305679F-7514-45E2-90D5-C984787225C5}.Release|Xbox 360.ActiveCfg = Release|Xbox 360
+		{6305679F-7514-45E2-90D5-C984787225C5}.Release|Xbox 360.Build.0 = Release|Xbox 360
+		{6305679F-7514-45E2-90D5-C984787225C5}.Release|Xbox 360.Deploy.0 = Release|Xbox 360
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

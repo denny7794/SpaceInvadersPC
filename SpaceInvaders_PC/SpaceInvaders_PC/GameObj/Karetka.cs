@@ -81,19 +81,25 @@ namespace SpaceInvaders_PC.GameObj
         {
             KeyboardState kbState = Keyboard.GetState();
             //MouseState msState = Mouse.GetState();
-            if (kbState.IsKeyDown(Keys.Left))// || (msState.X < sprPosition.X + sprRectangle.Width/2))
+            if (kbState.IsKeyDown(Keys.Left) ||  
+                GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.X < 0 ||
+                GamePad.GetState(PlayerIndex.One).DPad.Left == ButtonState.Pressed)// || (msState.X < sprPosition.X + sprRectangle.Width/2))
             {
                 sprPosition.X -= speed.X;
                 if (!bullet.isShot) 
                     bullet.sprPosition.X -= speed.X;
             }
-            if (kbState.IsKeyDown(Keys.Right))// || (msState.X > sprPosition.X + sprRectangle.Width/2))
+            if (kbState.IsKeyDown(Keys.Right) ||
+                 GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.X > 0 ||
+                GamePad.GetState(PlayerIndex.One).DPad.Right == ButtonState.Pressed)// || (msState.X > sprPosition.X + sprRectangle.Width/2))
             {
                 sprPosition.X += speed.X;
                 if (!bullet.isShot)
                     bullet.sprPosition.X += speed.X;
             }
-            if (kbState.IsKeyDown(Keys.Space) && !bullet.isShot)
+            if (kbState.IsKeyDown(Keys.Space) ||
+                 GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed
+                 && !bullet.isShot)
             {
                 bullet.Shot(this);
             }
